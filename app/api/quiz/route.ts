@@ -86,19 +86,27 @@ export async function GET(req: NextRequest) {
             whereClause.attempts = {
                 some: {
                     userId: user.id,
+                    status: {
+                        in: ["SUBMITTED", "GRADED"]
+                    }
                 },
             };
         }
 
         // Filter: not attempted quizzes
-
+        
         if (filter === "not_attempted") {
             whereClause.attempts = {
                 none: {
                     userId: user.id,
+                    status: {
+                        in: ["SUBMITTED", "GRADED"]
+                    }
                 },
             };
         }
+
+        
 
         quizzes = await prisma.quiz.findMany({
             where: whereClause,
@@ -111,7 +119,10 @@ export async function GET(req: NextRequest) {
                 },
                 attempts: {
                     where: {
-                        userId: user.id
+                        userId: user.id,
+                        status: {
+                            in: ["SUBMITTED", "GRADED"] // NEW: only completed attempts count
+                        }
                     },
                     select: {
                         id: true,
