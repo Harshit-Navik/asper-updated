@@ -1,6 +1,7 @@
 {
   "name": "temp_app",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,6 +11,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
     "@prisma/client": "^6.1.0",
     "bcryptjs": "^3.0.3",
     "clsx": "^2.1.1",
@@ -21,6 +23,7 @@
     "next-auth": "^5.0.0-beta.30",
     "next-cloudinary": "^6.17.5",
     "nodemailer": "^7.0.13",
+    "pg": "^8.20.0",
     "prisma": "^6.1.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
